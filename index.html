@@ -3,18 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>โปรแกรมฐานข้อมูล (Database Program)</title>
+  <title>รายวิชาโครงงาน - โปรแกรมฐานข้อมูล</title>
   <style>
-    /* ฟอนต์แนว Apple */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
     :root {
-      --bg-dark: #000000;
-      --bg-light: #ffffff;
-      --text-dark: #000;
+      --bg-dark: #000;
       --text-light: #fff;
-      --accent: #007aff; /* สีน้ำเงิน iOS */
-      --transition: all 0.4s ease;
+      --accent: #00b7ff;
+      --transition: all 0.3s ease;
     }
 
     body {
@@ -22,56 +19,67 @@
       font-family: "Inter", sans-serif;
       background-color: var(--bg-dark);
       color: var(--text-light);
-      transition: var(--transition);
       overflow-x: hidden;
     }
 
-    /* 🔝 Navbar */
-    .navbar {
+    /* ---------- Navbar ---------- */
+    header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      padding: 15px 50px;
+      background-color: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(10px);
-      z-index: 10;
-      transition: var(--transition);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
     }
 
     .navbar .logo {
       font-weight: 600;
-      letter-spacing: 1px;
+      font-size: 1.1em;
+      letter-spacing: 0.5px;
     }
 
-    .navbar nav a {
-      color: var(--text-light);
-      margin-left: 30px;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
       text-decoration: none;
-      font-weight: 300;
+      color: var(--text-light);
+      font-weight: 400;
       transition: var(--transition);
+      display: inline-block;
+      transform: scale(1);
     }
 
-    .navbar nav a:hover {
+    nav ul li a:hover {
       color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+      transform: scale(1.2);
     }
 
-    /* 🖥️ Hero Section */
+    /* ---------- Hero Section ---------- */
     .hero {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      padding: 140px 80px 100px;
       min-height: 100vh;
+      padding: 120px 80px 60px;
       box-sizing: border-box;
     }
 
     .hero-text {
       max-width: 500px;
-      animation: fadeInUp 1s ease forwards;
     }
 
     .hero-text h1 {
@@ -82,161 +90,179 @@
     .hero-text p {
       font-size: 1.2em;
       opacity: 0.8;
-      margin-bottom: 1.5em;
     }
 
-    .btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 14px 30px;
-      border-radius: 30px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .btn:hover {
-      background: #3399ff;
-      transform: scale(1.05);
-    }
-
-    /* 🖼️ Hero Image */
     .hero-image img {
-      width: 480px;
+      width: 420px;
       max-width: 100%;
-      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
-      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
     }
 
-    /* ✨ Feature Cards */
-    .features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      padding: 80px 40px;
+    /* ---------- Chapter Section ---------- */
+    .chapter {
+      padding: 100px 80px;
       background-color: #111;
-      transition: var(--transition);
+      border-top: 1px solid #222;
     }
 
-    .feature-card {
-      background: #1a1a1a;
-      padding: 30px;
-      border-radius: 20px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      transition: var(--transition);
-      animation: fadeInUp 1s ease forwards;
+    .chapter:nth-child(even) {
+      background-color: #0a0a0a;
     }
 
-    .feature-card:hover {
-      transform: translateY(-10px);
-      background: #222;
-    }
-
-    .feature-card h2 {
-      margin-bottom: 10px;
+    .chapter h2 {
       color: var(--accent);
+      font-size: 2em;
+      margin-bottom: 10px;
     }
 
-    /* ⚙️ Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .chapter p {
+      color: #ccc;
+      line-height: 1.7em;
+      font-weight: 300;
+      margin-bottom: 20px;
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+    .chapter a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 500;
+      border: 1px solid var(--accent);
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: var(--transition);
     }
 
-    /* 🦶 Footer */
+    .chapter a:hover {
+      background-color: var(--accent);
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    /* ---------- Footer ---------- */
     footer {
       text-align: center;
       padding: 40px;
-      background-color: #000;
       color: #777;
+      background-color: #000;
       font-size: 0.9em;
     }
 
-    /* 📱 Responsive */
     @media (max-width: 768px) {
-      .navbar {
+      header.navbar {
+        flex-direction: column;
+        align-items: flex-start;
         padding: 15px 30px;
       }
+
+      nav ul {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
       .hero {
+        padding: 120px 20px;
         flex-direction: column;
-        align-items: center;
         text-align: center;
-        padding: 120px 30px 60px;
       }
-      .hero-text {
-        max-width: 100%;
-      }
-      .hero-image {
-        margin-top: 40px;
-      }
-      .features {
-        padding: 60px 20px;
+
+      .hero-image img {
+        margin-top: 30px;
       }
     }
+	  /* ---------- Hero Section ---------- */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 80px 60px;
+  box-sizing: border-box;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 3em;
+  margin-bottom: 0.3em;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+  opacity: 0.8;
+}
+
+/* เอฟเฟกต์ลอยขึ้นลงให้โลโก้ */
+.hero-image img {
+  width: 420px;
+  max-width: 100%;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* คีย์เฟรมของการขยับ */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
   </style>
 </head>
 <body>
-  <!-- 🌟 Navbar -->
+
+  <!-- Navbar -->
   <header class="navbar">
-    <div class="logo">⌘ โปรแกรมฐานข้อมูล (Database Program)</div>
+    <div class="logo">⌘ โปรแกรมฐานข้อมูล</div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Product</a>
-      <a href="#">Design</a>
-      <a href="#">Contact</a>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li> ㅤㅤㅤ
+      </ul>
     </nav>
   </header>
 
-  <!-- 💻 Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-text">
-      <h1>รายวิชา โครงงาน</h1>
+      <h1>รายวิชาโครงงาน</h1>
       <p>รหัสวิชา 20204-8501</p>
-      <button class="btn">เรียนรู้เพิ่มเติม</button>
     </div>
     <div class="hero-image">
       <img src="images/SchoolLogo.png" alt="School Logo">
     </div>
   </section>
 
-  <!-- ⚡ Features -->
-  <section class="features">
-    <div class="feature-card">
-      <h2>⚡ Performance</h2>
-      <p>Blazing fast experience with stunning visuals and smooth interaction.</p>
-    </div>
-    <div class="feature-card">
-      <h2>💎 Design</h2>
-      <p>Crafted with precision. Every pixel has a purpose.</p>
-    </div>
-    <div class="feature-card">
-      <h2>🌙 Dark Mode</h2>
-      <p>Elegant black and white tones to match your style.</p>
-    </div>
+  <!-- Chapter Links -->
+  <section class="chapter"><h2>บทที่ 1 : บทนำ</h2><p>บทนำของโครงงานและวัตถุประสงค์เบื้องต้น</p><a href="Book1.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 2 : การวิเคราะห์ข้อมูล</h2><p>การวิเคราะห์ปัญหาและการเก็บรวบรวมข้อมูล</p><a href="Book2.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 3 : การออกแบบฐานข้อมูล</h2><p>การออกแบบ ER-Diagram และโครงสร้างตาราง</p><a href="Book3.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 4 : การออกแบบส่วนติดต่อผู้ใช้</h2><p>การออกแบบหน้าจอและ UI ที่เหมาะสมกับผู้ใช้</p><a href="Book4.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 5 : การเขียนโปรแกรม</h2><p>การเขียนโค้ดเพื่อเชื่อมต่อฐานข้อมูลและฟังก์ชันหลัก</p><a href="Book5.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 6 : การทดสอบระบบ</h2><p>กระบวนการทดสอบระบบและผลการทดสอบ</p><a href="Book6.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 7 : การนำระบบไปใช้จริง</h2><p>ขั้นตอนการนำระบบเข้าสู่การใช้งานจริง</p><a href="Book7.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 8 : การบำรุงรักษาระบบ</h2><p>แนวทางและการบำรุงรักษาหลังจากใช้งานระบบ</p><a href="Book8.html">อ่านเพิ่มเติม</a></section>
+  <section class="chapter"><h2>บทที่ 9 : สรุปผลและข้อเสนอแนะ</h2><p>สรุปผลการดำเนินงานและข้อเสนอแนะเพิ่มเติม</p><a href="Book9.html">อ่านเพิ่มเติม</a></section>
+
+  <!-- About Section -->
+  <section id="about" class="chapter">
+    <h2>เกี่ยวกับโครงงาน</h2>
+    <p>โครงงานนี้จัดทำขึ้นเพื่อศึกษาการพัฒนาโปรแกรมฐานข้อมูล โดยเน้นการออกแบบที่ใช้งานง่ายและมีประสิทธิภาพสูง</p>
   </section>
 
-  <!-- 🦶 Footer -->
+  <!-- Footer -->
   <footer>
-    <p>© 2025 จัดทําโดย นาย กฤษณะ มะณีกลัด</p>
+    <p>© 2025 จัดทำโดย นาย กฤษณะ มะณีกลัด</p>
   </footer>
+
 </body>
 </html>
