@@ -39,6 +39,7 @@ header .logo {
   font-weight: 600;
   font-size: 1.2em;
   animation: float 3.5s ease-in-out infinite;
+  margin-left: 10px; /* ✅ เพิ่มระยะห่างจากขอบซ้าย */
 }
 
 .back-button {
@@ -94,6 +95,7 @@ header .logo {
 @media (max-width: 768px) {
   .pdf-container { height: 800px; }
   header { padding: 15px 20px; }
+  header .logo { margin-left: 5px; } /* ลดระยะบนมือถือ */
 }
 </style>
 </head>
@@ -111,7 +113,7 @@ header .logo {
 </div>
 
 <div class="pdf-container">
-  <iframe src="images/Book1.pdf"></iframe>
+  <iframe src="Book1.pdf"></iframe>
 </div>
 
 </body>
