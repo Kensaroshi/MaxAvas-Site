@@ -14,6 +14,10 @@
       --transition: all 0.3s ease;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: "Inter", sans-serif;
@@ -42,6 +46,7 @@
       font-weight: 600;
       font-size: 1.1em;
       letter-spacing: 0.5px;
+      margin-left: 10px;
     }
 
     nav ul {
@@ -64,7 +69,7 @@
     nav ul li a:hover {
       color: var(--accent);
       text-shadow: 0 0 10px var(--accent);
-      transform: scale(1.2);
+      transform: scale(1.15);
     }
 
     /* ---------- Hero Section ---------- */
@@ -96,6 +101,13 @@
       width: 420px;
       max-width: 100%;
       filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
     }
 
     /* ---------- Chapter Section ---------- */
@@ -103,6 +115,7 @@
       padding: 100px 80px;
       background-color: #111;
       border-top: 1px solid #222;
+      text-align: left;
     }
 
     .chapter:nth-child(even) {
@@ -148,74 +161,67 @@
       font-size: 0.9em;
     }
 
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 100px 40px 60px;
+      }
+      .chapter {
+        padding: 80px 40px;
+      }
+    }
+
     @media (max-width: 768px) {
       header.navbar {
         flex-direction: column;
         align-items: flex-start;
-        padding: 15px 30px;
+        padding: 15px 25px;
       }
 
       nav ul {
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 15px;
       }
 
       .hero {
-        padding: 120px 20px;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 120px 20px 80px;
         text-align: center;
       }
 
+      .hero-text h1 {
+        font-size: 2.2em;
+      }
+
       .hero-image img {
-        margin-top: 30px;
+        width: 80%;
+        margin-top: 40px;
+      }
+
+      .chapter {
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .chapter h2 {
+        font-size: 1.7em;
+      }
+
+      .chapter p {
+        font-size: 1em;
       }
     }
-	  /* ---------- Hero Section ---------- */
-.hero {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 100vh;
-  padding: 120px 80px 60px;
-  box-sizing: border-box;
-}
 
-.hero-text {
-  max-width: 500px;
-}
-
-.hero-text h1 {
-  font-size: 3em;
-  margin-bottom: 0.3em;
-}
-
-.hero-text p {
-  font-size: 1.2em;
-  opacity: 0.8;
-}
-
-/* เอฟเฟกต์ลอยขึ้นลงให้โลโก้ */
-.hero-image img {
-  width: 420px;
-  max-width: 100%;
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-  animation: float 3.5s ease-in-out infinite;
-}
-
-/* คีย์เฟรมของการขยับ */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 1.8em;
+      }
+      .hero-text p {
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -226,7 +232,7 @@
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li> ㅤㅤㅤ
+        <li><a href="#about">About</a></li>ㅤㅤㅤ
       </ul>
     </nav>
   </header>
@@ -242,7 +248,7 @@
     </div>
   </section>
 
-  <!-- Chapter Links -->
+  <!-- Chapters -->
   <section class="chapter"><h2>บทที่ 1 : บทนำ</h2><p>บทนำของโครงงานและวัตถุประสงค์เบื้องต้น</p><a href="Book1.html">อ่านเพิ่มเติม</a></section>
   <section class="chapter"><h2>บทที่ 2 : การวิเคราะห์ข้อมูล</h2><p>การวิเคราะห์ปัญหาและการเก็บรวบรวมข้อมูล</p><a href="Book2.html">อ่านเพิ่มเติม</a></section>
   <section class="chapter"><h2>บทที่ 3 : การออกแบบฐานข้อมูล</h2><p>การออกแบบ ER-Diagram และโครงสร้างตาราง</p><a href="Book3.html">อ่านเพิ่มเติม</a></section>
