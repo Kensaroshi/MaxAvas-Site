@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>บทที่ 1 : บทนำ</title>
+<title>โปรแกรมฐานข้อมูล</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
@@ -19,63 +19,84 @@ body {
   font-family: "Inter", sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow-x: hidden;
 }
 
-header {
+/* ---------- Navbar ---------- */
+header.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 60px;
   background-color: rgba(0,0,0,0.85);
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  z-index: 1000;
 }
 
-header .logo {
+.logo {
   font-weight: 600;
-  font-size: 1.2em;
-  animation: float 3.5s ease-in-out infinite;
-  margin-left: 10px; /* ✅ เพิ่มระยะห่างจากขอบซ้าย */
+  font-size: 1.3em;
+  transition: transform 0.3s;
 }
 
-.back-button {
-  text-decoration: none;
-  color: var(--text-light);
-  font-weight: 500;
-  border: 1px solid var(--accent);
-  padding: 10px 20px;
-  border-radius: 25px;
-  transition: var(--transition);
-}
-
-.back-button:hover {
-  background-color: var(--accent);
-  color: #000;
+.logo:hover {
   transform: scale(1.1);
 }
 
-.chapter-title {
-  margin: 40px 0 20px;
-  font-size: 2.5em;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 400;
+  transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
+  display: inline-block;
+}
+
+nav ul li a:hover {
   color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+  transform: scale(1.15);
 }
 
-.chapter-content {
-  max-width: 800px;
-  width: 90%;
-  margin-bottom: 50px;
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 40px 60px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
+.hero-text h1 {
+  font-size: 3em;
+  margin: 0 0 10px;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+  opacity: 0.8;
+}
+
+/* ---------- PDF Embed ---------- */
 .pdf-container {
-  width: 100%;
-  max-width: 800px;
-  height: 1200px; /* ความสูงประมาณ A4 */
+  width: 90%;
+  max-width: 1000px;
+  height: 80vh;
+  margin: 50px auto;
   border: 2px solid var(--accent);
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: hidden;
 }
 
@@ -85,36 +106,98 @@ header .logo {
   border: none;
 }
 
-/* เอฟเฟกต์โลโก้ลอย */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+/* ---------- Back Button ---------- */
+.back-btn {
+  display: inline-block;
+  margin: 40px auto;
+  padding: 12px 30px;
+  font-weight: 500;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 25px;
+  text-decoration: none;
+  transition: transform 0.3s, background 0.3s, color 0.3s;
 }
 
-@media (max-width: 768px) {
-  .pdf-container { height: 800px; }
-  header { padding: 15px 20px; }
-  header .logo { margin-left: 5px; } /* ลดระยะบนมือถือ */
+.back-btn:hover {
+  transform: scale(1.1);
+  background-color: var(--accent);
+  color: #000;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 40px;
+  color: #777;
+  background-color: #000;
+  font-size: 0.9em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .hero-text h1 {
+    font-size: 2.2em;
+  }
+  .hero-text p {
+    font-size: 1em;
+  }
+  .pdf-container {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 600px) {
+  header.navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+  nav ul {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pdf-container {
+    height: 60vh;
+  }
 }
 </style>
 </head>
 <body>
 
-<header>
+<!-- Navbar -->
+<header class="navbar">
   <div class="logo">⌘ โปรแกรมฐานข้อมูล</div>
-  <a href="index.html" class="back-button">ย้อนกลับ</a>
+  <nav>
+    <ul>
+      <li><a href="Book1.html">หน้าแรก</a></li>ㅤㅤㅤ
+      
+    </ul>
+  </nav>
 </header>
 
-<h1 class="chapter-title">บทที่ 1 : บทนำ</h1>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>บทเรียนที่ 1</h1>
+    <p>โปรแกรมฐานข้อมูล</p>
+  </div>
+</section>
 
-<div class="chapter-content">
-  <p>บทนำของโครงงานและวัตถุประสงค์เบื้องต้น...</p>
-</div>
-
+<!-- PDF Container -->
 <div class="pdf-container">
-  <iframe src="Book1.pdf"></iframe>
+  <iframe src="images\บทเรียนที่ 1.pdf"></iframe>
 </div>
+
+<!-- Back Button -->
+<div style="text-align:center;">
+  <a href="Book1.html" class="back-btn">ไปหน้าถัดไป</a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 จัดทำโดย นาย กฤษณะ มะณีกลัด</p>
+</footer>
 
 </body>
 </html>
