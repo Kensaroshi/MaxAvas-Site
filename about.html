@@ -1,214 +1,220 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="dark"> 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About – ผู้จัดทำ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติผู้จัดทํา</title>
+    
+    <style>
+        /* (CSS code is mostly the same as in index.html, using shared styles for consistency) */
+        :root { /* Dark Mode */ --color-bg-dark: #0A0A0E; --color-bg-surface: #1C1C24; --color-text-primary: #FFFFFF; --color-text-secondary: #AAAAAA; --color-accent-blue: #007AFF; --color-border-subtle: #333340; --blur-strength: 15px; --color-module-bg: rgba(40, 40, 50, 0.4); --color-shadow: rgba(0, 0, 0, 0.5); }
+        [data-theme="light"] { /* Light Mode */ --color-bg-dark: #F5F5FA; --color-bg-surface: #FFFFFF; --color-text-primary: #1C1C24; --color-text-secondary: #666666; --color-accent-blue: #007AFF; --color-border-subtle: #DDDDDD; --color-module-bg: rgba(255, 255, 255, 0.9); --color-shadow: rgba(0, 0, 0, 0.15); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; background-color: var(--color-bg-dark); color: var(--color-text-primary); line-height: 1.6; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 30px 10px; transition: background-color 0.4s ease; }
+        .titanium-container { width: 100%; max-width: 800px; padding: 40px; border-radius: 30px; background: var(--color-bg-surface); box-shadow: 0 50px 100px var(--color-shadow), 0 15px 35px var(--color-shadow); overflow: hidden; transition: background 0.4s ease, box-shadow 0.4s ease; }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        /* College Logo */
+        .college-logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .college-logo img {
+            max-width: 120px; 
+            height: 120px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            box-shadow: 0 0 15px rgba(0, 122, 255, 0.5); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 122, 255, 0.7); 
+        }
+        .college-logo img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 122, 255, 0.8); 
+        }
+        
+        .header { padding: 0 0 30px; position: relative; text-align: center; }
+        .header-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.05em; background: linear-gradient(45deg, var(--color-accent-blue), #5AC8FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
+        .header-subtitle { font-size: 1.2rem; color: var(--color-text-secondary); font-weight: 300; }
+        #theme-switcher { position: absolute; top: 10px; right: 10px; background: var(--color-module-bg); border: 1px solid var(--color-border-subtle); color: var(--color-text-primary); font-size: 1.2rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
+        #theme-switcher:hover { background: var(--color-accent-blue); color: white; transform: scale(1.05); box-shadow: 0 4px 15px rgba(0, 122, 255, 0.5); }
 
-:root {
-  --bg-dark: #000;
-  --text-light: #fff;
-  --accent: #00b7ff;
-  --transition: all 0.3s ease;
-}
+        /* Advisor Section Styles */
+        .advisor-section {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            background: rgba(90, 200, 250, 0.1); /* สีฟ้าอ่อนสำหรับพื้นหลัง */
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
 
-body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  background-color: var(--bg-dark);
-  color: var(--text-light);
-  overflow-x: hidden;
-}
+        .advisor-section h2 {
+            font-size: 1.5rem;
+            color: #5AC8FA;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-/* Navbar */
-header.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  background-color: rgba(0,0,0,0.85);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
+        .advisor-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid #5AC8FA;
+        }
 
-.logo {
-  font-weight: 600;
-  font-size: 1.3em;
-  transition: transform 0.3s;
-}
+        .advisor-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--color-text-primary);
+        }
 
-.logo:hover {
-  transform: scale(1.1);
-}
+        .advisor-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
-}
+        /* Profile Grid Styles (สำหรับนักเรียน) */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 30px 0;
+            border-top: 1px solid var(--color-border-subtle); /* เพิ่มเส้นแบ่งส่วนครูกับนักเรียน */
+            margin-top: 30px;
+        }
 
-nav ul li a {
-  text-decoration: none;
-  color: var(--text-light);
-  transition: transform 0.3s, color 0.3s;
-  display: inline-block;
-}
+        .profile-card {
+            background: var(--color-module-bg);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
 
-nav ul li a:hover {
-  color: var(--accent);
-  transform: scale(1.15);
-}
+        .profile-card:hover {
+            transform: translateY(-5px);
+            border-color: #5AC8FA;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
 
-/* Hero */
-.hero {
-  text-align: center;
-  padding: 140px 20px 40px;
-}
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--color-accent-blue);
+        }
 
-.hero h1 {
-  font-size: 2.8em;
-  margin-bottom: 10px;
-}
+        .profile-card h3 {
+            font-size: 1.3rem;
+            color: var(--color-text-primary);
+            margin-bottom: 5px;
+        }
 
-.hero p {
-  opacity: 0.8;
-  font-size: 1.2em;
-}
+        .profile-card p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+        }
+        
+        /* Navigation Bar (Bottom) */
+        .navigation-bar { display: flex; justify-content: center; padding: 20px 0; margin-top: 30px; border-top: 1px solid var(--color-border-subtle);}
+        .nav-button { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-text-primary); padding: 10px 15px; border-radius: 30px; font-weight: 500; transition: all 0.3s ease; background: var(--color-module-bg); border: 1px solid var(--color-border-subtle); backdrop-filter: blur(var(--blur-strength)); }
+        .nav-button:hover { background: rgba(0, 122, 255, 0.15); border-color: var(--color-accent-blue); transform: translateY(-2px); }
 
-/* Profile Cards */
-.profile-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 40px 20px;
-}
 
-.profile-card {
-  background-color: #0c0c0c;
-  width: 280px;
-  border-radius: 20px;
-  padding: 25px;
-  text-align: center;
-  border: 2px solid var(--accent);
-  transition: transform 0.3s;
-}
-
-.profile-card:hover {
-  transform: scale(1.08);
-}
-
-.profile-card img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 3px solid var(--accent);
-  object-fit: cover;
-  margin-bottom: 15px;
-}
-
-.profile-card h3 {
-  margin: 10px 0 5px;
-  font-weight: 600;
-}
-
-.profile-card p {
-  font-size: 0.9em;
-  opacity: 0.85;
-}
-
-/* Back Button */
-.back-btn {
-  display: inline-block;
-  margin: 50px auto;
-  padding: 12px 30px;
-  font-weight: 500;
-  color: var(--accent);
-  border: 2px solid var(--accent);
-  border-radius: 25px;
-  text-decoration: none;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.back-btn:hover {
-  transform: scale(1.1);
-  background-color: var(--accent);
-  color: #000;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 40px;
-  color: #777;
-  font-size: 0.9em;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 2em; }
-  .profile-card { width: 90%; }
-}
-</style>
-
+        @media (max-width: 600px) { /* Mobile Styles */ .titanium-container { padding: 30px 15px; } .header-title { font-size: 2.2rem; } 
+            .profile-grid { grid-template-columns: 1fr; } 
+            .college-logo img { max-width: 100px; height: 100px; } 
+        }
+    </style>
 </head>
 <body>
+    <div class="titanium-container">
+        <div class="college-logo">
+            <img src="Images/SchoolLogo.png" alt="โลโก้วิทยาลัย">
+        </div>
 
-<header class="navbar">
-  <div class="logo">⌘ โปรแกรมฐานข้อมูล</div>
-  <nav>
-    <ul>
-      <li><a href="index.html">หน้าแรก</a></li>ㅤㅤㅤ
-    </ul>
-  </nav>
-</header>
+        <header class="header">
+            <h1 class="header-title">ประวัติผู้จัดทำ</h1>
+            <p class="header-subtitle">สื่อการสอนรายวิชา โปรแกรมฐานข้อมูล</p>
+            <button id="theme-switcher">🌙</button>
+        </header>
 
-<section class="hero">
-  <h1>ผู้จัดทำ (About Us)</h1>
-  <p>แนะนำตัวนักเรียนผู้พัฒนาเว็บไซต์และเนื้อหาประกอบรายวิชา</p>
-</section>
+        <main class="content-area">
+            
+            <section class="advisor-section">
+                <h2>🧑‍🏫 ครูที่ปรึกษา</h2>
+                <div class="advisor-card">
+                    <img src="Images/ครูเกด.jpg" alt="รูปภาพครูที่ปรึกษา">
+                    <h3>นาง ธีรญา แจ่มสาคร</h3>
+                    <p>คุณครูที่ปรึกษาโครงงาน</p>
+                    
+                </div>
+            </section>
+            
+            <h2 style="font-size: 1.5rem; text-align: center; color: var(--color-text-primary); margin-bottom: -10px;">✨ คณะผู้จัดทำ</h2>
 
-<div class="profile-container">
+            <section class="profile-grid">
+                
+                <div class="profile-card">
+                    <img src="Images/โอม.jpg" alt="รูปภาพผู้จัดทำ 1">
+                    <h3>นาย กฤษณะ มะณีกลัด</h3>
+                    <p>รหัสประจำตัว: 66202040002</p>
+                    <p>หน้าที่: เขียนโค้ดออกแบบโครงสร้างเว็บไซต์</p>
+                </div>
+                
+                <div class="profile-card">
+                    <img src="Images/014ef2f860e8e56b27d4a3267e0a193a.jpg" alt="รูปภาพผู้จัดทำ 2">
+                    <h3>นาย พีรทัต พิศนอก</h3>
+                    <p>รหัสประจำตัว: 662020##</p>
+                    <p>หน้าที่: จัดทำแบบฟอร์มทดสอบ</p>
+                </div>
+                
+                <div class="profile-card">
+                    <img src="Images/014ef2f860e8e56b27d4a3267e0a193a.jpg" alt="รูปภาพผู้จัดทำ 3">
+                    <h3>นางสาว กัญญารัตน์ อ่องอร่าม</h3>
+                    <p>รหัสประจำตัว: 662020400##</p>
+                    <p>หน้าที่: จัดทำเนื้อหาบทที่ 1-9</p>
+                </div>
 
-  <!-- คนที่ 1 -->
-  <div class="profile-card">
-    <img src="images\รูปภาพนักเรียน (Nov 3, 2025 at 1_34 PM).jpg" alt="profile1">
-    <h3>นาย กฤษณะ มะณีกลัด</h3>
-    <p>ผู้พัฒนาเว็บไซต์, จัดทำเนื้อหา, UI/UX</p>
-  </div>
+                </section>
 
-  <!-- คนที่ 2 -->
-  <div class="profile-card">
-    <img src="images\S__18989068.jpg" alt="profile2">
-    <h3>นาย พีรทัต พิศนอก</h3>
-    <p>รวบรวมเนื้อหาและงานวิชาการ</p>
-  </div>
-
-  <!-- คนที่ 3 -->
-  <div class="profile-card">
-    <img src="images\S__18989069.jpg" alt="profile3">
-    <h3>นางสาว กัญญารัตน์ อ่องอร่าม</h3>
-    <p>ออกแบบโครงสร้างองค์ประกอบและจัดรูปแบบ</p>
-  </div>
-
-</div>
-
-<div style="text-align:center;">
-  <a href="index.html" class="back-btn">กลับไปหน้าแรก</a>
-</div>
-
-<footer>
-  © 2025 ผู้จัดทำโดยนักเรียน วิทยาลัยการอาชีพสระบุรี
-</footer>
-
+        </main>
+        
+        <footer class="navigation-bar">
+            <a href="index.html" class="nav-button">
+                <span class="icon">🏠</span>
+                <span class="label">กลับหน้าหลัก</span>
+            </a>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const switcher = document.getElementById('theme-switcher');
+            const html = document.documentElement;
+            let currentTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', currentTheme);
+            switcher.textContent = currentTheme === 'dark' ? '☀️' : '🌙'; 
+            switcher.addEventListener('click', () => {
+                let newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                switcher.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            });
+        });
+    </script>
 </body>
 </html>
