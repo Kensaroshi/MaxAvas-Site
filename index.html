@@ -1,105 +1,397 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="dark"> 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>โครงงาน — รหัสวิชา 21910-2012</title>
-<style>
-:root {
-  --bg: #f5faff;
-  --card: rgba(255,255,255,0.65);
-  --glass-blur: 12px;
-  --accent: #0a84ff;
-  --accent2: #6ee7b7;
-  --shadow: 0 8px 20px rgba(0,0,0,0.08);
-  --radius: 18px;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Thai", sans-serif;
-}
-*{box-sizing:border-box;}
-body {margin:0; padding:40px 20px; font-family: var(--font); background: linear-gradient(180deg, #f0f8ff, #ffffff); color:#0b1220;}
-.container {max-width: 980px; margin:0 auto; display:grid; grid-template-columns:360px 1fr; gap:28px;}
-.panel {background: var(--card); backdrop-filter: blur(var(--glass-blur)); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow);}
-.brand {display:flex; gap:14px; align-items:center; margin-bottom:16px;}
-.logo {width:64px; height:64px; border-radius:14px; overflow:hidden; animation: float 4s ease-in-out infinite;}
-.logo img{width:100%; height:100%; object-fit:cover;}
-.panel h1{margin:0 0 4px;font-size:20px;color:var(--accent);}
-.panel .lead{font-size:14px;color:#555;}
-.meta {margin-top:16px; display:grid; gap:8px;}
-.meta .item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(255,255,255,0.85);
-  padding:8px 12px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.meta .item strong {
-  display:inline-block;
-  max-width: 60%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: right;
-}
-.meta .item a {color: #0a84ff; text-decoration: underline; font-weight:500;}
-.content {display:grid; gap:16px;}
-.card {background: var(--card); backdrop-filter: blur(var(--glass-blur)); border-radius: var(--radius); padding:20px; box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s;}
-.card:hover {transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.12);}
-h2.title {margin:0 0 8px;color:var(--accent);}
-.details summary{cursor:pointer; padding:10px 12px; display:block; border-radius:12px; background: rgba(255,255,255,0.55); margin-bottom:6px; transition: background 0.2s;}
-.details summary:hover{background: rgba(255,255,255,0.75);}
-.details p{margin:4px 0 0 12px; font-size:14px; color:#555;}
-.btn {display:inline-block; padding:10px 16px; border:none; border-radius:12px; cursor:pointer; font-weight:600; text-decoration:none; color:white; background: linear-gradient(90deg,var(--accent),var(--accent2)); transition: transform 0.22s;}
-.btn:hover{transform: translateY(-3px);}
-@media(max-width:900px){.container{grid-template-columns:1fr;}}
-@keyframes float {0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าหลัก | โปรแกรมฐานข้อมูล</title>
+    
+    <style>
+        /* CSS Variables สำหรับ Dark Mode (ค่าเริ่มต้น) */
+        :root {
+            --color-bg-dark: #0A0A0E; 
+            --color-bg-surface: #1C1C24; 
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #AAAAAA;
+            --color-accent-blue: #007AFF; 
+            --color-border-subtle: #333340;
+            --blur-strength: 15px;
+            --color-module-bg: rgba(40, 40, 50, 0.4); 
+            --color-shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        /* CSS Variables สำหรับ Light Mode (เมื่อ data-theme="light") */
+        [data-theme="light"] {
+            --color-bg-dark: #F5F5FA; 
+            --color-bg-surface: #FFFFFF; 
+            --color-text-primary: #1C1C24; 
+            --color-text-secondary: #666666; 
+            --color-accent-blue: #007AFF; 
+            --color-border-subtle: #DDDDDD;
+            --color-module-bg: rgba(255, 255, 255, 0.9); 
+            --color-shadow: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; 
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            min-height: 100vh;
+            padding: 30px 10px;
+            transition: background-color 0.4s ease; 
+        }
+
+        .titanium-container {
+            width: 100%;
+            max-width: 900px; 
+            padding: 40px;
+            border-radius: 30px;
+            background: var(--color-bg-surface);
+            box-shadow: 0 50px 100px var(--color-shadow), 0 15px 35px var(--color-shadow); 
+            overflow: hidden; 
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        /* College Logo */
+        .college-logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .college-logo img {
+            max-width: 120px; 
+            height: 120px; 
+            object-fit: cover; 
+            border-radius: 50%; /* ทำให้เป็นวงกลม */
+            box-shadow: 0 0 15px rgba(0, 122, 255, 0.5); /* ปรับเงาให้นุ่มนวลขึ้นและกว้างขึ้นเล็กน้อย */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 122, 255, 0.7); /* ปรับเส้นขอบให้บางลงและโปร่งแสงขึ้น */
+        }
+        .college-logo img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 122, 255, 0.8); /* เมื่อ hover ให้เงาสว่างขึ้น */
+        }
+
+        /* Header Styles */
+        .header {
+            padding: 0 0 30px;
+            position: relative;
+            text-align: center;
+        }
+
+        .header-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.05em; 
+            background: linear-gradient(45deg, var(--color-accent-blue), #5AC8FA); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+        
+        .header-info {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            border: 1px solid var(--color-border-subtle);
+            border-radius: 15px;
+            padding: 15px;
+            background: var(--color-module-bg);
+            backdrop-filter: blur(5px);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        /* Theme Switcher Button (ตำแหน่งขวาบน) */
+        #theme-switcher {
+            position: absolute;
+            top: 0px; 
+            right: 0px;
+            background: var(--color-module-bg);
+            border: 1px solid var(--color-border-subtle);
+            color: var(--color-text-primary);
+            font-size: 1.2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #theme-switcher:hover {
+            background: var(--color-accent-blue);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.5);
+        }
+        
+        /* List Module (จุดประสงค์/คำอธิบาย) */
+        .academic-list {
+            padding: 20px 0;
+            text-align: left;
+        }
+
+        .academic-list h2 {
+            font-size: 1.8rem;
+            color: var(--color-text-primary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #5AC8FA;
+            padding-left: 10px;
+        }
+
+        .academic-list ol, .academic-list ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 30px;
+        }
+
+        .academic-list li {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            background: var(--color-module-bg);
+            border: 1px solid var(--color-border-subtle);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .academic-list li:hover {
+            transform: translateX(5px);
+            border-color: var(--color-accent-blue);
+        }
+        
+        /* Navigation Links Grid (สำหรับ 9 บท) */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0 40px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 15px;
+            background: var(--color-module-bg); 
+            border: 1px solid var(--color-border-subtle);
+            color: var(--color-text-primary);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border-color: var(--color-accent-blue);
+        }
+        
+        .nav-link span:first-child {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #5AC8FA;
+        }
+        
+        .nav-link.active-book {
+            border-color: #5AC8FA;
+            box-shadow: 0 0 10px #5AC8FA;
+            animation: pulse-light 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse-light {
+            0% { box-shadow: 0 0 0 0 rgba(90, 200, 250, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(90, 200, 250, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(90, 200, 250, 0.7); }
+        }
+
+        /* Footer Links (ประวัติ/ติดต่อ) */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0 0;
+            border-top: 1px solid var(--color-border-subtle);
+        }
+
+        .footer-links a {
+            color: var(--color-accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--color-text-primary);
+        }
+
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .titanium-container { padding: 30px 15px; }
+            .header-title { font-size: 2.2rem; }
+            .nav-grid { grid-template-columns: 1fr; }
+            #theme-switcher { top: 5px; right: 5px; }
+            .footer-links { flex-direction: column; gap: 10px; }
+            .college-logo img { max-width: 100px; height: 100px; } /* ปรับขนาดบนมือถือ */
+        }
+    </style>
 </head>
 <body>
+    <div class="titanium-container">
+        <div class="college-logo">
+            <img src="images/SchoolLogo.png" alt="โลโก้วิทยาลัย">
+        </div>
 
-<main class="container">
+        <header class="header">
+          <button id="theme-switcher">🌙</button>
 
-<section class="panel">
-  <div class="brand">
-    <div class="logo">
-      <img src="images/SchoolLogo.png" alt="โลโก้วิลัย">
-    </div>
-    <div>
-      <h1>โปรแกรมฐานข้อมูล</h1>
-      <p class="lead">รหัสวิชา 21910-2012</p>
-    </div>
-  </div>
+            <h1 class="header-title">สื่อการเรียน โปรแกรมฐานข้อมูล</h1>
+            <p class="header-subtitle">รายวิชา: โปรแกรมฐานข้อมูล รหัสวิชา: 21910-2012</p>
+            
+            <div class="header-info">
+                <p><strong>📝 ผู้จัดทำ:</strong><br>
+นาย กฤษณะ มะณีกลัด<br>
+นาย พีรทัต พิศนอก<br>
+นางสาว กัญญารัตน์ อ่องอร่าม</p>
+                <p><strong>🧑‍🏫 ครูที่ปรึกษาโครงงาน:</strong><br>
+นาง ธีรญา แจ่มสาคร</p>
+            </div>
+      </header>
 
-  <div class="meta">
-    <div class="item"><span>ครูที่ปรึกษาโครงงาน</span><strong>นาง ธีรญา แจ่มสาคร</strong></div>
-    <div class="item"><span>กลุ่ม</span><strong>กลุ่มที่ 10</strong></div>
-    <div class="item"><span>ข้อมูลติดต่อ</span><strong><a href="mailto:66202040002@sic.ac.th">66202040002@sic.ac.th</a></strong></div>
-    <div class="item"><span>GitHub</span><strong><a href="https://github.com/Kensaroshi" target="_blank">github.com/Kensaroshi</a></strong></div>
-  </div>
-  <p style="margin-top:16px;font-size:13px;color:#555;">คลิกแต่ละบทเพื่อไปหน้าบทนํา → แล้วต่อไปเนื้อหาจริง</p>
-</section>
+        <main class="content-area">
+            
+            <div class="academic-list">
+                
+                <h2>จุดประสงค์รายวิชา</h2>
+                <ol>
+                    <li>1. รู้และเข้าใจเกี่ยวกับหลักการของระบบฐานข้อมูล ชนิด และลักษณะของฐานข้อมูล</li>
+                    <li>2. มีทักษะการออกแบบ สร้าง และแก้ไขระบบฐานข้อมูลโดยใช้โปรแกรมจัดการฐานข้อมูล</li>
+                    <li>3. มีความสามารถประยุกต์ใช้โปรแกรมจัดการฐานข้อมูลให้เหมาะสมกับงานธุรกิจ</li>
+					<li>4. มีเจตคติและกิจนิสัยที่ดีในการปฏิบัติงานด้วยความละเอียด รอบคอบ</li>
+                </ol>
 
-<section class="content">
-  <article class="card">
-    <h2 class="title">สารบัญ 9 บท</h2>
-    <div class="details">
-      <details><summary>บทที่ 1 — หลักการของระบบฐานข้อมูล</summary><p><a class="btn" href="book1.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 2 — ชนิดและลักษณะของฐานข้อมูล</summary><p><a class="btn" href="book2.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 3 — การสร้างฐานข้อมูลและตารางข้อมูล</summary><p><a class="btn" href="book3.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 4 — การสร้างความสัมพันธ์ระหว่างตาราง (Relationships)</summary><p><a class="btn" href="book4.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 5 — เร็วๆนี้</summary><p><a class="btn" href="book5.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 6 — เร็วๆนี้</summary><p><a class="btn" href="book6.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 7 — เร็วๆนี้</summary><p><a class="btn" href="book7.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 8 — เร็วๆนี้</summary><p><a class="btn" href="book8.html">ไปบทนํา</a></p></details>
-      <details><summary>บทที่ 9 — เร็วๆนี้</summary><p><a class="btn" href="book9.html">ไปบทนํา</a></p></details>
-    </div>
-  </article>
-</section>
+                <h2>สมรรถนะรายวิชา</h2>
+                <ol>
+                    <li>1. แสดงความรู้เกี่ยวกับระบบฐานข้อมูล ชนิดและลักษณะของฐานข้อมูลตามหลักการ</li>
+                    <li>2. ออกแบบ สร้าง และแก้ไขระบบฐานข้อมูลโดยใช้โปรแกรมจัดการฐานข้อมูล</li>
+                    <li>3. ประยุกต์ใช้โปรแกรมจัดการฐานข้อมูลให้เหมาะสมกับงานธุรกิจ</li>
+                </ol>
+                
+                <h2>คําอธิบายรายวิชา</h2>
+                <p style="padding: 10px 15px; border-radius: 10px; background: var(--color-module-bg);">
+                    ศึกษาและปฏิบัติเกี่ยวกับระบบฐานข้อมูล ชนิดและลักษณะของฐานข้อมูลการใช้โปรแกรมจัดการฐานข้อมูล การสร้างฐานข้อมูลและตารางข้อมูล การเชื่อมความสําพันธ์ระหว่างตาราง (Relationships) การเพิ่ม ลบ แก้ไขข้อมูล และการสืบค้นข้อมูล การสร้างแบบรายงานข้อมูล และการใช้งานมาโคร (Macro) การตรวจสอบฐานข้อมูล และประยุกต์ใช้โปรแกรมจัดการฐานข้อมูลให้เหมาะสมกับงานธุรกิจ
+                </p>
+            </div>
+            
+            <h2 style="text-align: center; margin-top: 40px; border-left: none; padding-left: 0;">📚 สารบัญบทเรียน 9 บท</h2>
 
-</main>
+            <section class="nav-grid">
+                
+                <a href="book1.html" class="nav-link active-book">
+                    <span>1️⃣</span>
+                    <span>บทที่ 1: หลักการของระบบฐานข้อมูล</span>
+                </a>
+                
+                <a href="book2.html" class="nav-link">
+                    <span>2️⃣</span>
+                    <span>บทที่ 2: ชนิดและหลักลักษณะของฐานข้อมูล</span>
+                </a>
+
+                <a href="book3.html" class="nav-link">
+                    <span>3️⃣</span>
+                    <span>บทที่ 3: การสร้างฐานข้อมูลและตารางข้อมูล</span>
+                </a>
+                
+                <a href="book4.html" class="nav-link">
+                    <span>4️⃣</span>
+                    <span>บทที่ 4: การสร้างความสัมพันธ์ระหว่างตาราง (Relationships)</span>
+                </a>
+
+                <a href="book5.html" class="nav-link">
+                    <span>5️⃣</span>
+                    <span>บทที่ 5: การสืบค้น แก้ไข และปรับปรุงข้อมูล</span>
+                </a>
+                
+                <a href="book6.html" class="nav-link">
+                    <span>6️⃣</span>
+                    <span>บทที่ 6: เร็วๆนี้</span>
+                </a>
+                
+                <a href="book7.html" class="nav-link">
+                    <span>7️⃣</span>
+                    <span>บทที่ 7: เร็วๆนี้</span>
+                </a>
+
+                <a href="book8.html" class="nav-link">
+                    <span>8️⃣</span>
+                    <span>บทที่ 8: เร็วๆนี้</span>
+                </a>
+
+                <a href="book9.html" class="nav-link">
+                    <span>9️⃣</span>
+                    <span>บทที่ 9: เร็วๆนี้</span>
+                </a>
+                
+            </section>
+
+        </main>
+
+        <footer class="footer-links">
+             <a href="about.html" target="_self">🧑‍💻 ประวัติผู้จัดทำ</a>
+            <a href="mailto:66202040002@sic.ac.th">✉️ ติดต่อ</a>
+        </footer>
+</div>
+    
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const switcher = document.getElementById('theme-switcher');
+            const html = document.documentElement;
+
+            let currentTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', currentTheme);
+            switcher.textContent = currentTheme === 'dark' ? '☀️' : '🌙'; 
+
+            switcher.addEventListener('click', () => {
+                let newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                switcher.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            });
+        });
+    </script>
 </body>
 </html>
