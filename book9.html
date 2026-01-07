@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทที่ 9 (บทนำ) | การประยุกต์ใช้โปรแกรมฐานข้อมูลในงานธุรกิจ</title>
+    
+    <style>
+        /* 1. CSS Variables สำหรับ Dark Mode และ Light Mode */
+        :root {
+            --color-bg-dark: #0A0A0E; 
+            --color-bg-surface: #1C1C24; 
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #AAAAAA;
+            --color-accent-blue: #007AFF; 
+            --color-border-subtle: #333340;
+            --color-module-bg: rgba(40, 40, 50, 0.4); 
+            --color-shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="light"] {
+            --color-bg-dark: #F5F5FA; 
+            --color-bg-surface: #FFFFFF; 
+            --color-text-primary: #1C1C24; 
+            --color-text-secondary: #666666; 
+            --color-accent-blue: #007AFF; 
+            --color-border-subtle: #DDDDDD;
+            --color-module-bg: rgba(255, 255, 255, 0.9); 
+            --color-shadow: rgba(0, 0, 0, 0.15);
+        }
+
+        /* 2. Base Styles และ Layout */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; 
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.7;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            min-height: 100vh;
+            padding: 30px 10px;
+            transition: background-color 0.4s ease; 
+        }
+
+        .titanium-container {
+            width: 100%;
+            max-width: 900px; 
+            padding: 40px;
+            border-radius: 20px;
+            background: var(--color-bg-surface);
+            box-shadow: 0 20px 50px var(--color-shadow); 
+            overflow: hidden; 
+        }
+
+        /* College Logo */
+        .college-logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+        .college-logo img {
+            max-width: 120px; 
+            height: 120px; 
+            object-fit: cover; 
+            border-radius: 50%; /* ทำให้เป็นวงกลม */
+            box-shadow: 0 0 15px rgba(0, 122, 255, 0.5); /* ปรับเงาให้นุ่มนวลขึ้นและกว้างขึ้นเล็กน้อย */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 122, 255, 0.7); /* ปรับเส้นขอบให้บางลงและโปร่งแสงขึ้น */
+        }
+        .college-logo img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 122, 255, 0.8); /* เมื่อ hover ให้เงาสว่างขึ้น */
+        }
+
+        .book-header { 
+            text-align: center; 
+            padding-bottom: 20px; 
+            margin-bottom: 30px; 
+            border-bottom: 3px solid var(--color-border-subtle); 
+            position: relative; 
+        }
+        .book-header .header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--color-accent-blue), #5AC8FA); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .book-header .header-subtitle { color: var(--color-text-secondary); font-weight: 300; }
+        
+        /* จัดกลุ่มปุ่มนำทางด้านบน (เพื่อให้ไม่เบียดกัน) */
+        .header-actions {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .action-button-header {
+            text-decoration: none; 
+            color: var(--color-text-secondary); 
+            font-size: 0.9rem; 
+            padding: 8px 15px; 
+            border: 1px solid var(--color-border-subtle); 
+            border-radius: 8px; 
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .action-button-header:hover { 
+            color: var(--color-text-primary); 
+            background-color: var(--color-accent-blue); 
+            border-color: var(--color-accent-blue); 
+        }
+        
+        /* ... ในส่วนที่ 3. โลโก้ Header และปุ่มนำทางด้านบน */
+        
+/* ปรับปุ่ม Theme Switch ให้เป็นวงกลมเหมือน index.html */
+#theme-switcher {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 0;
+    background-color: var(--color-module-bg);
+    border: 1px solid var(--color-border-subtle);
+    /* 💡 โค้ดที่เพิ่ม: ผลักปุ่มนี้ไปทางขวาให้สุด */
+    margin-left: auto; 
+}
+
+        /* 4. Content Styles */
+        .module-section h2 { 
+            font-size: 1.8rem; color: var(--color-text-primary); margin-bottom: 20px; 
+            border-left: 4px solid #5AC8FA; padding-left: 10px;
+        }
+        .pdf-viewer-placeholder {
+            min-height: 500px; 
+            background-color: var(--color-module-bg); 
+            border: 2px dashed var(--color-border-subtle); 
+            border-radius: 15px;
+            overflow: hidden; /* สำคัญสำหรับ iframe/embed */
+            padding: 0;
+        }
+        .pdf-viewer-placeholder embed, 
+        .pdf-viewer-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border: none;
+        }
+        .spacer-line { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--color-border-subtle), rgba(0, 0, 0, 0)); margin: 40px 0; }
+
+        /* 5. Action Buttons (ปุ่มเริ่มบทเรียน) */
+        .action-zone { text-align: center; padding: 20px 0; }
+        .action-button {
+            display: inline-block; padding: 15px 30px; border-radius: 10px; text-decoration: none;
+            font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;
+        }
+        .primary-button { background-color: var(--color-accent-blue); color: white; }
+        .primary-button:hover { background-color: #0056b3; transform: translateY(-2px); }
+
+        /* 6. Footer Navigation */
+        .book-navigation-full { display: flex; justify-content: center; padding-top: 20px; border-top: 1px solid var(--color-border-subtle); gap: 20px; flex-wrap: wrap; }
+        .nav-button {
+            text-decoration: none; padding: 12px 18px; border-radius: 10px;
+            background-color: var(--color-accent-blue); color: white; font-weight: 600;
+            transition: background-color 0.3s ease; flex-grow: 0; min-width: 150px; text-align: center;
+        }
+        .nav-button.secondary-button { background-color: var(--color-module-bg); color: var(--color-text-primary); border: 1px solid var(--color-border-subtle); }
+        .nav-button.secondary-button:hover { background-color: var(--color-accent-blue); color: white; }
+
+        /* 7. Mobile Responsiveness */
+        @media (max-width : 1301px ){
+            .titanium-container { padding: 20px; }
+            .book-header .header-title { font-size: 1.8rem; }
+            .header-actions { position: static; flex-direction: row; justify-content: space-between; margin-bottom: 15px; }
+            .action-button-header { width: auto; }
+            .book-navigation-full { flex-direction: column; gap: 10px; }
+            .nav-button { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="titanium-container">
+        <div class="college-logo">
+            <img src="images/SchoolLogo.png" alt="โลโก้วิทยาลัย">
+        </div>
+
+        <header class="book-header">
+    <div class="header-actions">
+        <div id="theme-switcher" class="action-button-header">🌙</div>
+    </div>
+    
+    <h1 class="header-title">บทที่ 9: การประยุกต์ใช้โปรแกรมฐานข้อมูลในงานธุรกิจ</h1>
+    <p class="header-subtitle">บทนำสื่อการเรียนรู้บทที่ 9</p>
+</header>
+		
+
+      <main class="book-content-area">
+            
+          
+        <section class="module-section introduction-section">
+    <h2>📑 บทนําสื่อการเรียนรู้หน่วยที่ 9</h2>
+    
+    
+    <div class="pdf-viewer-placeholder" id="pdf-container-1">
+        <embed src="images/book9-9.pdf" type="application/pdf" /> 
+    </div>
+</section>
+
+      </main>
+        
+        <footer class="book-navigation-full">
+            <a href="index.html" class="nav-button secondary-button">🏠 กลับหน้าหลัก</a>
+		  <a href="book9-k9.html" class="nav-button">เข้าสู่เนื้อหาจริง (บทที่ 9)</a>
+            
+      </footer>
+</div>
+
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const switcher = document.getElementById('theme-switcher');
+            const html = document.documentElement;
+
+            // 1. โหลด Theme ที่บันทึกไว้ใน Local Storage
+            let currentTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', currentTheme);
+            // 2. กำหนด Emoji เริ่มต้นตาม Theme (Dark: 🌙, Light: ☀️)
+            switcher.textContent = currentTheme === 'dark' ? '☀️' : '🌙'; 
+
+            // 3. ฟังก์ชันสลับ Theme
+            switcher.addEventListener('click', () => {
+                let newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                
+                // 4. บันทึกและอัปเดต
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                // 5. เปลี่ยน Emoji
+                switcher.textContent = newTheme === 'dark' ? '☀️' : '🌙'; // ถ้าเป็น Dark ให้แสดง '☀️' (ชวนเปลี่ยนเป็น Light)
+            });
+        });
+    </script>
+</body>
+</html>
